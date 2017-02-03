@@ -569,7 +569,7 @@
 ;; streaming
 (declare ^:dynamic ^:powderkeg/no-sync ^org.apache.spark.streaming.api.java.JavaStreamingContext *ssc*)
 
-(def ^:private ^:powderkeg/no-sync started-sscs (atom #{})) ; there should never be more than one...
+(def ^:powderkeg/no-sync started-sscs (atom #{})) ; there should never be more than one...
 
 (defmacro with-streaming-context [{:keys [duration ssc timeout checkpoint-dir]} & body]
   `(binding [*ssc* (-> ~(or ssc `(org.apache.spark.streaming.api.java.JavaStreamingContext. *sc* (org.apache.spark.streaming.Duration. ~duration)))
